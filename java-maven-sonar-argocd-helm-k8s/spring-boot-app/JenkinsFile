@@ -27,8 +27,8 @@ pipeline {
      stage("Docker login and push") {
         steps {
         script {
-          withCredentials([string(credentialsId: 'docker-cred', variable: 'dock')]) {
-           sh "docker login -u dutt.gatiganti@gmail.com -p ${docker-cred}"
+          withCredentials([string(credentialsId: 'docker-cred2', variable: 'dock')]) {
+           sh "docker login -u dutt.gatiganti@gmail.com -p ${docker-cred2}"
            sh "docker push dutt1/primg:v1.1"
 }
 }
