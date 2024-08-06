@@ -1,36 +1,32 @@
-pipeline {
+node {
   agent any
   stages {
     stage('Checkout') {
-      steps {
+      
         sh 'echo passed'
        // git branch: 'main', url: 'https://github.com/duttgatiganti/Jenkins-Zero-To-Hero.git'
-      }
+      
     }
     stage('Build and Test') {
-      steps {
+     
         sh 'ls -ltr'
         // build the project and create a JAR file
         sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
-      }
+     
     }
    
      stage("Docker Image") {
-           steps {
-        script {
+         
+       
 				sh "cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t dutt1/primg:${BUILD_NUMBER} ."
 				sh "docker tag dutt1/primg:${BUILD_NUMBER} dutt1/primg:v1.3"
-			}
-}
-                
+			
         }
      stage("Docker login and push") {
-        steps {
-        script {
+        
           withCredentials([string(credentialsId: 'docker-cred2', variable: 'dock')]) {
            sh "docker login -u dutt.gatiganti@gmail.com -p ${docker-cred2}"
            sh "docker push dutt1/primg:v1.1"
-}
 }
 
 }
@@ -43,7 +39,7 @@ pipeline {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
             GIT_USER_NAME = "duttgatiganti"
         }
-        steps {
+      
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "dutt.gatiganti@gmail.com"
@@ -55,7 +51,7 @@ pipeline {
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
             }
-        }
+        
     }
   }
 }
