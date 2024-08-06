@@ -16,10 +16,12 @@ pipeline {
     }
    
      stage("Docker Image") {
-           
+           steps {
+        script {
 				sh "docker build -t dutt1/primg:${BUILD_NUMBER} ."
 				sh "docker tag dutt1/primg:${BUILD_NUMBER} dutt1/primg:v1.3"
-			
+			}
+}
                 
         }
      stage("Docker login and push") {
