@@ -25,7 +25,7 @@ pipeline {
         script {
            
            withCredentials([string(credentialsId: 'docker-cred2', variable: 'dock')]) {
-           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .
+           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
            sh "docker login -u dutt.gatiganti@gmail.com -p ${docker-cred2}"
            sh "docker push dutt1/primg:v1.1"
             }
