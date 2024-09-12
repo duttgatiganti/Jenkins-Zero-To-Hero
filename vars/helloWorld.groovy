@@ -1,3 +1,3 @@
 def call() {
-  git 'https://github.com/duttgatiganti/Jenkins-Zero-To-Hero.git'
+  git branch: 'main', url: 'https://github.com/duttgatiganti/Jenkins-Zero-To-Hero.git'
 }
