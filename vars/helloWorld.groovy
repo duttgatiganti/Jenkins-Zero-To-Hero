@@ -1,3 +1,3 @@
 def call() {
-  sh 'echo Hi From DevOps Team'
+  git 'https://github.com/duttgatiganti/Jenkins-Zero-To-Hero.git'
 }
