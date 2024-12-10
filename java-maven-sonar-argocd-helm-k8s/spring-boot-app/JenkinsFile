@@ -35,7 +35,9 @@ pipeline {
    stage('deploy'){
     steps {
    kubeconfig(credentialsId: 'config', serverUrl: '') {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests'
+          sh 'kubectl apply -f .'
+          sh 'kubectl get pods'
 } } }
 }
 }
