@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git') {
+            steps {
+                git 'https://github.com/duttgatiganti/banking-demo-1.git'
+            }
+        }
+        stage('mvn') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('docker') {
+            steps {
+                sh 'docker build -t dutt1/23app:v1 .'
+            }
+        }
+        stage('Trivy File Scan') {
+            steps {
+                dir('src') {
+                    sh 'trivy fs . > trivyfs.txt'
+                }
+            }
+        }
+        
+    }
+    post{
+        success{
+            echo "build ok"
+       
+            emailext (
+                subject: "Jenkins Job Success: ${env.JOB_NAME}",
+                body: "Good news! The job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) completed successfully.\nCheck it here: ${env.BUILD_URL}",
+                to: "dutt.gatiganti@gmail.com",
+                from: "dutt.gatiganti@gmail.com",
+                replyTo: "dutt.gatiganti@gmail.com"
+            )
+        }
+        
+    }
+}
+
+hqgg nwaz pwvo ccrx
