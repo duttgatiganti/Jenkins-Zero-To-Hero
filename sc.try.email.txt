@@ -42,4 +42,8 @@ pipeline {
     }
 }
 
-hqgg nwaz pwvo ccrx
+downoad email ext,configure system/2 places with cred smtp auth,ssl465
+1 smtp.gm.com/465/use ssl/adv utf-8
+2 smtp.gm.com/adv em,app pwdssl/465/utf-8
+qtdd kfvs ijoc ugqw
+clpy wvol miou wsyb
